@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.manage.demo.dao.OrdersMapper">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+
+
+    <resultMap  id="goodResult" type="com.manage.demo.pojo.Orders">
+        <id property="oid" column="oid"/>
+        <result property="uid" column="uid"/>
+        <result property="gidSizeQua" column="gid_size_qua"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="isPay" column="isPay"/>
+        <result property="isdelivery" column="isdelivery"/>
+        <result property="expressName" column="express_name"/>
+        <result property="express" column="express"/>
+        <result property="discount" column="discount"/>
+        <result property="price" column="price"/>
+        <result property="actual" column="actual"/>
+        <result property="couponId" column="coupon_id"/>
+        <result property="check" column="check"/>
+    </resultMap>
+
+
+    <select id="findByIsdelivery" resultType="com.manage.demo.pojo.Orders">
+        select * from orders order by oid limit #{page},50
+    </select>
+
+    <select id="findByOid" resultType="com.manage.demo.pojo.Orders">
+        select * from orders where oid = #{oid}
+    </select>
+
+    <select id="findByIsPay" resultType="com.manage.demo.pojo.Orders">
+        select * from orders order by oid limit #{page},50
+    </select>
+
+    <select id="findByIsPayAndUnpay" resultType="com.manage.demo.pojo.Orders">
+        select * from orders order by oid limit #{page},50
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.manage.demo.dao.UserMapper">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+
+
+    <resultMap  id="goodResult" type="com.manage.demo.pojo.User">
+        <id property="uid" column="uid"/>
+        <result property="one" column="one"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="mail" column="mail"/>
+        <result property="pwd" column="pwd"/>
+        <result property="coupon" column="coupon"/>
+        <result property="address" column="address"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+
+    <select id="findByUid" resultType="com.manage.demo.pojo.User">
+        select * from user where uid = #{uid}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.manage.demo.dao.GoodsMapper">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+
+
+    <resultMap  id="goodResult" type="com.manage.demo.pojo.Goods">
+        <id property="gid" column="gid"/>
+        <result property="one" column="one"/>
+        <result property="two" column="two"/>
+        <result property="three" column="three"/>
+        <result property="brand" column="brand"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="discount" column="discount"/>
+        <result property="price" column="price"/>
+        <result property="pro_code" column="pro_code"/>
+        <result property="color" column="color"/>
+        <result property="size" column="size"/>
+        <result property="im" column="im"/>
+    </resultMap>
+
+
+    <select id="findByGid" resultType="com.manage.demo.pojo.Goods">
+        select * from goods where gid = #{gid}
+    </select>
+
+
+</mapper>
