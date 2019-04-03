@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manage.demo.dao.mapper.Couponmapper">
+
+    <resultMap id="couponResult" type="com.manage.demo.pojo.Coupons">
+        <id property="did" column="did"/>
+        <result property="name" column="name"/>
+        <result property="percent" column="percent"/>
+        <result property="quanlity" column="quanlity"/>
+        <result property="dead_time" column="dead_time"/>
+    </resultMap>
+
+    <select id="findBydid"  resultType="com.manage.demo.pojo.Coupons">
+    select * from coupon order by did=#{did}
+    </select>
+
+    <select id="Add"  resultType="com.manage.demo.pojo.Coupons">
+    insert into coupon VALUES (#{did},#{name},#{percent},#{quanlity},#{dead_time})
+    </select>
+
+    <select id="deleteBydid"  resultType="com.manage.demo.pojo.Coupons">
+    DELETE FROM coupon WHERE did = #{did}
+    </select>
+    <!--<select id="getEmpByEmpno"  parameterType="string" resultType="Emp">-->
+    <!--select * from emp where empno=#{empno}-->
+    <!--</select>-->
+</mapper>

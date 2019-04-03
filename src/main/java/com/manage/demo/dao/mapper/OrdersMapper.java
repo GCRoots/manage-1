@@ -1,8 +1,10 @@
-package com.manage.demo.dao;
+package com.manage.demo.dao.mapper;
 
 import com.manage.demo.pojo.Orders;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrdersMapper {
 
     Orders[] findByIsdelivery(@Param("page") int page);

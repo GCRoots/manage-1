@@ -1,4 +1,4 @@
-package com.manage.demo.pojo;
+package com.manage.demo.dao.cdn;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.GetObjectRequest;

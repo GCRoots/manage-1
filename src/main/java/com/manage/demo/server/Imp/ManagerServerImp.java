@@ -1,6 +1,6 @@
 package com.manage.demo.server.Imp;
 
-import com.manage.demo.dao.ManagerMapper;
+import com.manage.demo.dao.mapper.ManagerMapper;
 import com.manage.demo.pojo.Manager;
 import com.manage.demo.server.ManagerServer;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -176,6 +176,10 @@ public class Data {
         da=new ArrayList<>();
     }
 
+    public void setList(String s1) {
+        da.add(s1);
+    }
+
     public List<String> getDa() {
         return da;
     }
@@ -647,4 +651,6 @@ public class Data {
     public void setLo(String lo) {
         this.lo = lo;
     }
+
+
 }
