@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface ManagerMapper {
 
     Manager findByUuid(@Param("uuid") String uuid);
+
+    public Manager login(Manager manager);
 }

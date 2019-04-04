@@ -12,7 +12,14 @@ public class ManagerServerImp implements ManagerServer {
     private ManagerMapper managerMapper;
 
     @Override
+
     public Manager findByUuid(String uuid) {
         return managerMapper.findByUuid(uuid);
+    }
+
+
+    public Manager login(Manager manager) {
+
+        return managerMapper.login(manager);
     }
 }

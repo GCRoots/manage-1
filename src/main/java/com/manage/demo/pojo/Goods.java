@@ -1,20 +1,35 @@
 package com.manage.demo.pojo;
 
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Goods {
-    private String gid;
-    private String one;
-    private String two;
-    private String three;
-    private String brand;
-    private String title;
-    private String description;
-    private String discount;
-    private String price;
-    private String pro_code;
-    private String color;
-    private String size;
-    private String im;
+    @CsvBindByName(column = "gid")
+    String gid;
+    @CsvBindByName(column = "one")
+    String one;
+    @CsvBindByName(column = "two")
+    String two;
+    @CsvBindByName(column = "three")
+    String three;
+    @CsvBindByName(column = "brand")
+    String brand;
+    @CsvBindByName(column = "title")
+    String title;
+    @CsvBindByName(column = "description")
+    String description;
+    @CsvBindByName(column = "discount")
+    String discount;
+    @CsvBindByName(column = "prince")
+    String price;
+    @CsvBindByName(column = "pro_code")
+    String pro_code;
+    @CsvBindByName(column = "color")
+    String color;
+    @CsvBindByName(column = "size")
+    String size;
+    @CsvBindByName(column = "im")
+    String im;
 
     public String getGid() {
         return gid;

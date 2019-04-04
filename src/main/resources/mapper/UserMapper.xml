@@ -27,5 +27,33 @@
         select * from user where uid = #{uid}
     </select>
 
+    <insert id="addUser">
+        insert
+        into user (uid, name, sex, phone, mail, pwd, address,reg_date)
+        value (#{uid},#{name},#{sex},#{phone},#{mail},#{pwd},#{address},#{reg_date})
+    </insert>
+
+    <update id="upUser">
+        update user set
+            name = #{name},
+            sex =#{sex},
+            phone =#{phone},
+            mail = #{mail},
+            pwd = #{pwd},
+            coupon = #{coupon},
+            address = #{address}
+    </update>
+
+    <delete id="delUser">
+        select *from user where uid = #{uid}
+    </delete>
+
+    <select id="getAll" resultType="com.manage.demo.domain.User">
+        select *from user
+    </select>
+
+    <select id="findById" resultType="com.manage.demo.domain.User">
+        select *from user where uid = #{uid}
+    </select>
 
 </mapper>

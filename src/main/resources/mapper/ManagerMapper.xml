@@ -20,5 +20,8 @@
         select * from manager where uuid = #{uuid}
     </select>
 
+    <select id="login" parameterType="com.manage.demo.pojo.Manager" resultType="com.manage.demo.pojo.Manager">
+    select *from manage where uuid = #{uuid} and pwd = #{pwd}
+</select>
 
 </mapper>
