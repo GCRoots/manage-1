@@ -27,10 +27,10 @@
         delete from goods where gid = #{gid}
     </delete>
 
-    <select id="getAll" resultType="com.manage.demo.domain.Goods">
+    <select id="getAll" resultType="com.manage.demo.pojo.Goods">
         select *from goods
     </select>
-    <select id="im" resultType="com.manage.demo.domain.Goods">
+    <select id="im" resultType="com.manage.demo.pojo.Goods">
         select im from goods where gid = #{gid}
     </select>
 </mapper>

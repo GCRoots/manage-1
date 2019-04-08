@@ -39,7 +39,7 @@ public class EsUtil {
                 .put("cluster.name", "elasticsearch").build();
 
 
-        
+
 
 
 //        try {

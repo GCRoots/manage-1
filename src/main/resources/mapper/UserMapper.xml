@@ -48,11 +48,11 @@
         select *from user where uid = #{uid}
     </delete>
 
-    <select id="getAll" resultType="com.manage.demo.domain.User">
+    <select id="getAll" resultType="com.manage.demo.pojo.User">
         select *from user
     </select>
 
-    <select id="findById" resultType="com.manage.demo.domain.User">
+    <select id="findById" resultType="com.manage.demo.pojo.User">
         select *from user where uid = #{uid}
     </select>
 
