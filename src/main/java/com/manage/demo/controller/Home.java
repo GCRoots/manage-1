@@ -25,7 +25,7 @@ public class Home {
     @Autowired
     private UserMapper userDao;
 
-    @RequestMapping(value = "user/all" , method = RequestMethod.POST)
+    @RequestMapping(value = "/user/all" , method = RequestMethod.POST)
     public String userall(){
 
         List user = userDao.getAll();
@@ -33,10 +33,12 @@ public class Home {
 
         return "t";
     }
+
     @RequestMapping(value = "/user/add" , method = RequestMethod.POST)
     public void useradd(){
 
     }
+
     @RequestMapping(value = "/home/all" , method = RequestMethod.POST)
     public JSONObject homeall() {
 
