@@ -20,10 +20,11 @@ public class Comment {
         String uid=d.getUid();
         if (uid.equals("xxx")){
             cdn cdn = new cdn();
-            String jsonString = cdn.download("my0039/page/comm/myself/"+uid+".json","/home/zsy/桌面/my0039/page/comm/myself/"+uid+".json");
+            String currentUser = System.getProperty("user.name");
+            String jsonString = cdn.download("my0039/page/comm/myself/"+uid+".json","/home/" + currentUser + "/桌面/my0039/page/comm/myself/"+uid+".json");
             JSONObject jb = JSON.parseObject(jsonString);
             String hd = jb.getString("hd");
-            String jsonString1 = cdn.download(hd,"/home/zsy/桌面/"+hd);
+            String jsonString1 = cdn.download(hd,"/home/" + currentUser + "桌面/"+hd);
             JSONObject jb1 = JSON.parseObject(jsonString1);
             String string = jb1.getString("nx");//获取当前评论的下一条的地址，用于循环遍历
             String rs = null;
@@ -31,7 +32,7 @@ public class Comment {
             Message m=new Message();
             String jsonString2 = null;
             while (string.equals("0")){
-                jsonString2 = cdn.download(string,"/home/zsy/桌面/"+string);
+                jsonString2 = cdn.download(string,"/home/" + currentUser + "/桌面/"+string);
                 JSONObject jb2 = JSON.parseObject(jsonString2);
                 JSONObject ctn = JSON.parseObject(jb2.getString("ctn"));//获取评论内容json，并转换成jsonobject
                 d2.setUid(uid);
@@ -57,8 +58,9 @@ public class Comment {
         if (uid=="xxx"){
         String cid=d.getCid();
         cdn cdn = new cdn();
-        String jsonString = cdn.download("my0039/page/comm/myself/"+uid+".json","/home/zsy/桌面/my0039/page/comm/myself/"+uid+".json");
-        String jsonString1 = cdn.download("my0039/page/comm/myself/"+cid+".json","/home/zsy/桌面/my0039/page/comm/myself/"+cid+".json");
+            String currentUser = System.getProperty("user.name");
+        String jsonString = cdn.download("my0039/page/comm/myself/"+uid+".json","/home/" + currentUser + "/桌面/my0039/page/comm/myself/"+uid+".json");
+        String jsonString1 = cdn.download("my0039/page/comm/myself/"+cid+".json","/home/" + currentUser + "/桌面/my0039/page/comm/myself/"+cid+".json");
         JSONObject jb = JSON.parseObject(jsonString);
         JSONObject jb1 = JSON.parseObject(jsonString1);
         String hd = jb.getString("hd");
@@ -74,15 +76,15 @@ public class Comment {
         else{
             String fr = jb1.getString("fr");
             String nx = jb1.getString("nx");
-            String fJson = cdn.download(fr,"/home/zsy/桌面/"+fr);
-            String nJson = cdn.download(nx,"/home/zsy/桌面/"+nx);
+            String fJson = cdn.download(fr,"/home/" + currentUser + "/桌面/"+fr);
+            String nJson = cdn.download(nx,"/home/" + currentUser + "/桌面/"+nx);
             JSONObject fj = JSON.parseObject(fJson);
             JSONObject nj = JSON.parseObject(nJson);
             fj.put("nx",jb1.getString("nx"));
             nj.put("fr",jb1.getString("fr"));
             cdn.delete("my0039/page/comm/myself/"+cid+".json");
-            cdn.upload(fr,"/home/zsy/桌面/"+fr);
-            cdn.upload(nx,"/home/zsy/桌面/"+nx);
+            cdn.upload(fr,"/home/" + currentUser + "/桌面/"+fr);
+            cdn.upload(nx,"/home/" + currentUser + "/桌面/"+nx);
             //如果为中间的评论
 
         }

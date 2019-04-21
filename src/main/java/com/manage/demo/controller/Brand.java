@@ -30,7 +30,8 @@ public class Brand {
         String uid = d.getUid();
         if (uid.equals("xxx")){
             cdn cdn = new cdn();
-            String jsonString = cdn.download("my0039/page/brand.json","/home/zsy/桌面/my0039/page/brand.json");
+            String currentUser = System.getProperty("user.name");
+            String jsonString = cdn.download("my0039/page/brand.json","/home/" + currentUser + "/桌面/my0039/page/brand.json");
             JSONObject jb = JSON.parseObject(jsonString);
             String lo = jb.getString("lo");
 
@@ -65,15 +66,16 @@ public class Brand {
         if (uid.equals("xxx")){
             brandServer.Add(ne,im);
             cdn cdn = new cdn();
-            String jsonString = cdn.download("my0039/page/brand.json","/home/zsy/桌面/my0039/page/brand.json");
+            String currentUser = System.getProperty("user.name");
+            String jsonString = cdn.download("my0039/page/brand.json","/home/" + currentUser + "桌面/my0039/page/brand.json");
             JSONObject jb = JSON.parseObject(jsonString);
             String djs = JSON.toJSONString(d);
             JSONObject jb1 = JSON.parseObject(djs);
             JSONArray ja = JSON.parseArray(jb.getString("lo"));
             ja.add(jb1);
             jb.put("lo",ja.toString());
-            createJsonFile(jb.toString(),"/home/zsy/桌面/my0039/page","brand");
-            cdn.upload("my0039/page/brand.json","/home/zsy/桌面/my0039/page/brand.json");
+            createJsonFile(jb.toString(),"/home/" + currentUser + "/my0039/page","brand");
+            cdn.upload("my0039/page/brand.json","/home/" + currentUser + "/my0039/page/brand.json");
             System.out.println(djs);
             System.out.println(ja);
             System.out.println(jb);
@@ -95,7 +97,8 @@ public class Brand {
         if (uid.equals("xxx")){
             brandServer.deleteByname(ne);
             cdn cdn = new cdn();
-            String jsonString = cdn.download("my0039/page/brand.json","/home/zsy/桌面/my0039/page/brand.json");
+            String currentUser = System.getProperty("user.name");
+            String jsonString = cdn.download("my0039/page/brand.json","/home/" + currentUser + "/my0039/page/brand.json");
             JSONObject jb = JSON.parseObject(jsonString);
             JSONArray ja = JSON.parseArray(jb.getString("lo"));
             ja.get(0).toString();
@@ -110,8 +113,8 @@ public class Brand {
             }
             ja.remove(index);
             jb.put("lo",ja.toString());
-            createJsonFile(jb.toString(),"/home/zsy/桌面/my0039/page","brand");
-            cdn.upload("my0039/page/brand.json","/home/zsy/桌面/my0039/page/brand.json");
+            createJsonFile(jb.toString(),"/home/" + currentUser + "/my0039/page","brand");
+            cdn.upload("my0039/page/brand.json","/home/" + currentUser + "/my0039/page/brand.json");
             System.out.println(ja);
             Message m=new Message();
             m.setRs("t");
@@ -142,8 +145,8 @@ public class Brand {
         Data d= JSON.parseObject(json.toString(), Data.class);
 
         Data d1=new Data();
-        d1.setNe("xxx");
-        d1.setIm("xxx");
+        d1.setNe(d.getNe());
+        d1.setIm(d.getIm());
 
         Data d2=new Data();
 

@@ -2,13 +2,11 @@ package com.manage.demo.pojo;
 
 public class Coupons {
     private String did;
-
-
-
     private String name;
     private String percent;
     private String quanlity;
     private String dead_time;
+
     public String getDid() {
         return did;
     }

@@ -21,6 +21,10 @@
     <select id="deleteBydid"  resultType="com.manage.demo.pojo.Coupons">
     DELETE FROM coupon WHERE did = #{did}
     </select>
+
+    <select id="getAll" resultType="com.manage.demo.pojo.Coupons">
+        select *from coupon
+    </select>
     <!--<select id="getEmpByEmpno"  parameterType="string" resultType="Emp">-->
     <!--select * from emp where empno=#{empno}-->
     <!--</select>-->

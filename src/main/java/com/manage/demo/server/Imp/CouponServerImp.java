@@ -6,6 +6,8 @@ import com.manage.demo.server.CouponServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CouponServerImp implements CouponServer {
 
@@ -25,5 +27,10 @@ public class CouponServerImp implements CouponServer {
     @Override
     public Coupons deleteBydid(String did) {
         return null;
+    }
+
+    @Override
+    public List<Coupons> getAll() {
+        return couponmapper.getAll();
     }
 }
