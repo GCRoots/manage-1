@@ -5,8 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.manage.demo.dao.cdn.cdn;
 import com.manage.demo.pojo.Data;
+import com.manage.demo.pojo.Manager;
 import com.manage.demo.pojo.Message;
 import com.manage.demo.server.BrandServer;
+import com.manage.demo.server.ManagerServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,8 @@ import java.io.*;
 public class Brand {
     @Autowired
     private BrandServer brandServer;
+    @Autowired
+    private ManagerServer managerServer;
 
     @RequestMapping(value = "/brand/view",method = RequestMethod.POST)
     public String view(@RequestBody JSONObject json) throws IOException {
@@ -27,8 +31,10 @@ public class Brand {
 //        System.out.println(brands.getImage());
 //        Brands brands1 = brandServer.findAll();
 //        System.out.println(brands1);
-        String uid = d.getUid();
-        if (uid.equals("xxx")){
+        String uuid = d.getUuid();
+
+        Manager manager=managerServer.findByUuid(uuid);
+        if (manager.getUuid().equals(uuid)){
             cdn cdn = new cdn();
             String currentUser = System.getProperty("user.name");
             String jsonString = cdn.download("my0039/page/brand.json","/home/" + currentUser + "/桌面/my0039/page/brand.json");
@@ -60,10 +66,13 @@ public class Brand {
     @RequestMapping(value = "/brand/add",method = RequestMethod.POST)
     public String add(@RequestBody JSONObject json) throws IOException {
         Data d= JSON.parseObject(json.toString(), Data.class);
-        String uid = d.getUid();
+
         String ne = d.getNe();
         String im = d.getIm();
-        if (uid.equals("xxx")){
+        String uuid = d.getUuid();
+
+        Manager manager=managerServer.findByUuid(uuid);
+        if (manager.getUuid().equals(uuid)){
             brandServer.Add(ne,im);
             cdn cdn = new cdn();
             String currentUser = System.getProperty("user.name");
@@ -92,9 +101,12 @@ public class Brand {
     @RequestMapping(value = "/brand/delete",method = RequestMethod.POST)
     public String delete(@RequestBody JSONObject json) throws IOException {
         Data d= JSON.parseObject(json.toString(), Data.class);
-        String uid = d.getUid();
+
         String ne = d.getNe();
-        if (uid.equals("xxx")){
+        String uuid = d.getUuid();
+
+        Manager manager=managerServer.findByUuid(uuid);
+        if (manager.getUuid().equals(uuid)){
             brandServer.deleteByname(ne);
             cdn cdn = new cdn();
             String currentUser = System.getProperty("user.name");
@@ -125,6 +137,11 @@ public class Brand {
       else
           return "failed";
     }
+
+
+
+
+
 
     @RequestMapping(value = "/brand/viewList",method = RequestMethod.POST)
     public String  viewList(@RequestBody JSONObject json){
@@ -170,6 +187,9 @@ public class Brand {
         String s=JSON.toJSONString(m);
         return s;
     }
+
+
+
 
     public static boolean createJsonFile(String jsonString, String filePath, String fileName) {
         // 标记文件生成是否成功

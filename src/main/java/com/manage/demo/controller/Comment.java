@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.manage.demo.dao.cdn.cdn;
 import com.manage.demo.pojo.Data;
+import com.manage.demo.pojo.Manager;
 import com.manage.demo.pojo.Message;
+import com.manage.demo.server.ManagerServer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,11 +17,18 @@ import java.io.IOException;
 
 @RestController
 public class Comment {
+
+    @Autowired
+    private ManagerServer managerServer;
+
     @RequestMapping(value = "/comment/view",method = RequestMethod.POST)
     public String view(@RequestBody JSONObject json) throws IOException {
         Data d= JSON.parseObject(json.toString(), Data.class);
         String uid=d.getUid();
-        if (uid.equals("xxx")){
+        String uuid = d.getUuid();
+
+        Manager manager=managerServer.findByUuid(uuid);
+        if (manager.getUuid().equals(uuid)){
             cdn cdn = new cdn();
             String currentUser = System.getProperty("user.name");
             String jsonString = cdn.download("my0039/page/comm/myself/"+uid+".json","/home/" + currentUser + "/桌面/my0039/page/comm/myself/"+uid+".json");
@@ -55,7 +65,10 @@ public class Comment {
     public String delete(@RequestBody JSONObject json) throws IOException {
         Data d= JSON.parseObject(json.toString(), Data.class);
         String uid=d.getUid();
-        if (uid=="xxx"){
+        String uuid = d.getUuid();
+
+        Manager manager=managerServer.findByUuid(uuid);
+        if (manager.getUuid().equals(uuid)){
         String cid=d.getCid();
         cdn cdn = new cdn();
             String currentUser = System.getProperty("user.name");
